@@ -17,7 +17,8 @@ export default function Header(){
                 src='assets/images/logo.svg' 
                 alt='Evently' 
                 width={128} 
-                height={38} 
+                height={38}
+                loading = 'eager'
             />
         </Link>
 

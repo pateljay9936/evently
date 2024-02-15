@@ -12,6 +12,7 @@ export default function Footer(){
               alt='Evently' 
               width={128} 
               height={38}
+              loading = 'eager'
           />
         </Link>
         <p>2024 Evently. All Rights reserved.</p>
