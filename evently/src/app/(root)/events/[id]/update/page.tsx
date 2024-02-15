@@ -1,7 +1,7 @@
 import Eventform from "@/components/shared/EventForm";
 import { auth } from "@clerk/nextjs";
 
-export default function CreateEvent() {
+export default function UpdateEvent() {
   const { sessionClaims } = auth();
 
   const userID = sessionClaims?.userId as string;
@@ -9,10 +9,10 @@ export default function CreateEvent() {
   return (
     <>
         <section className="bg-primary-50 bg-dotted-pattern bg-cover bg-center py-5 md:py-10">
-        <h3 className="wrapper h3-bold text-center sm:text-left">Create Event</h3>
+        <h3 className="wrapper h3-bold text-center sm:text-left">Update Event</h3>
         </section>
         <div className="wrapper my-8">
-          <Eventform userId={userID} type='Create'/>
+          <Eventform userId={userID} type='Update'/>
         </div>
     </>
   )
