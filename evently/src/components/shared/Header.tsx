@@ -18,7 +18,7 @@ export default function Header(){
                 alt='Evently' 
                 width={128} 
                 height={38}
-                loading = 'eager'
+                priority
             />
         </Link>
 

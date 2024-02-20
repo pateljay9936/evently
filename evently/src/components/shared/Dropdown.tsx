@@ -17,9 +17,10 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 
-import { ICategoty } from "@/lib/database/models/category.model";
-import { useState } from "react";
+import Category, { ICategoty } from "@/lib/database/models/category.model";
+import { useEffect, useState } from "react";
 import { Input } from "../ui/input";
+import { createCategory, getAllCategory } from "@/lib/actions/category.actions";
 
 type DropdownProps = {
   onChangeHandler: () => void;
@@ -32,8 +33,20 @@ export default function Dropdown({ onChangeHandler, value }: DropdownProps) {
   const [newCategory, setNewCategory] = useState('');
 
   const handleAddCategory = () => {
-    console.log(" newCategory");
-  }
+    createCategory({ categoryName: newCategory.trim() })
+      .then((category) => {
+        setcategories((prevState) => [...prevState, category]);
+      });
+  };
+
+  useEffect(() => {
+    const getCategories = async () => {
+      const categoryList = await getAllCategory();
+      categoryList && setcategories(categoryList as ICategoty[]);
+    };
+    getCategories();
+  }, []);
+
 
   return (
     <Select onValueChange={onChangeHandler} defaultValue={value}>
@@ -41,16 +54,16 @@ export default function Dropdown({ onChangeHandler, value }: DropdownProps) {
         <SelectValue placeholder="Category" />
       </SelectTrigger>
       <SelectContent>
-        {categories.length > 0 &&
-          categories.map((category) => (
-            <SelectItem key={category._id} value={category.id}>
-              {category.name}
-            </SelectItem>
-          ))}
+        {categories.length > 0 && categories.map((category) => (
+          <SelectItem key={category._id} value={category._id} >
+            {category.name}
+          </SelectItem>
+        ))}
+
 
         <AlertDialog>
           <AlertDialogTrigger className="p-medium-14 flex w-full py-3 pl-8 rounded-sm
-           text-primary-500 hover:bg-primary-50 focus:text-primary-500">Open</AlertDialogTrigger>
+           text-primary-500 hover:bg-primary-50 focus:text-primary-500">Create new category</AlertDialogTrigger>
           <AlertDialogContent className="bg-white">
             <AlertDialogHeader>
               <AlertDialogTitle>New Category</AlertDialogTitle>

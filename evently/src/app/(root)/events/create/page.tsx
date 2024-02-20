@@ -4,8 +4,11 @@ import { auth } from "@clerk/nextjs";
 export default function CreateEvent() {
   const { sessionClaims } = auth();
 
-  const userID = sessionClaims?.userId as string;
+  const userID = sessionClaims?.user_id as string;
 
+  // console.log(sessionClaims?.user_id, "-----> sessionClaims?.user_id")
+
+console.log(userID, "-----> userID")
   return (
     <>
         <section className="bg-primary-50 bg-dotted-pattern bg-cover bg-center py-5 md:py-10">

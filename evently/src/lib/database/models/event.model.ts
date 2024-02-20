@@ -19,12 +19,12 @@ const EventSchema = new Schema({
     description: { type: String },
     location: { type: String },
     createdAt: { type: Date, default: Date.now },
-    imamgeUrl: { type: String, required: true },
+    imageUrl: { type: String, required: true },
     startDateTime: { type: Date, required: true },
     endDateTime: { type: Date, required: true },
     isFree: { type: Boolean, default: false },
     price: { type: Number },
-    catgory: { type: Schema.Types.ObjectId, ref: 'Category' },
+    category: { type: Schema.Types.ObjectId, ref: 'Category' },
     organizer: { type: Schema.Types.ObjectId, ref: 'User' }
 })
 
