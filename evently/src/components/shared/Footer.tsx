@@ -7,13 +7,14 @@ export default function Footer(){
     <footer className='border-t'>
       <div className='flex flex-col flex-center flex-between wrapper p-5 gap-4 text-center sm:flex-row'>
         <Link href='/'>
-          <Image 
-              src='assets/images/logo.svg' 
-              alt='Evently' 
-              width={128} 
-              height={38}
-              loading = 'eager'
-          />
+        <Image 
+    src='/assets/images/logo.svg' 
+    alt='Evently' 
+    width={128} 
+    height={38}
+    // Add inline styles to maintain aspect ratio
+    style={{ width: '128px', height: '38px', objectFit: 'contain'}}
+/>
         </Link>
         <p>2024 Evently. All Rights reserved.</p>
       </div>

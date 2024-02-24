@@ -20,7 +20,8 @@ export default function MobileNav() {
                 src='assets/icons/menu.svg'
                 alt="menu"
                 width={24}
-                height={24} />
+                height={24} 
+                style={{ width: '24px', height: '24px', objectFit: 'contain'}} />
         </SheetTrigger>
         <SheetContent className="flex flex-col bg-white gap-6 md:hidden">
             <Image  

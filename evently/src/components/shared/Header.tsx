@@ -13,13 +13,14 @@ export default function Header(){
     <header className='border-b w-full'>
         <div className='wrapper flex items-center justify-between '>
         <Link href='/'>
-            <Image 
-                src='assets/images/logo.svg' 
-                alt='Evently' 
-                width={128} 
-                height={38}
-                priority
-            />
+        <Image 
+    src='/assets/images/logo.svg' 
+    alt='Evently' 
+    width={128} 
+    height={38}
+    // Add inline styles to maintain aspect ratio
+    style={{ width: '128px', height: '38px', objectFit: 'contain'}}
+/>
         </Link>
 
         <SignedIn>
