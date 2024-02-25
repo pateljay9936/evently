@@ -17,7 +17,7 @@ export default function MobileNav() {
         <SheetTrigger className="align-middle">
             <Image
                 className="cursor-pointer" 
-                src='assets/icons/menu.svg'
+                src='/assets/icons/menu.svg'
                 alt="menu"
                 width={24}
                 height={24} 
@@ -25,7 +25,7 @@ export default function MobileNav() {
         </SheetTrigger>
         <SheetContent className="flex flex-col bg-white gap-6 md:hidden">
             <Image  
-                src='assets/images/logo.svg' 
+                src='/assets/images/logo.svg' 
                 alt='logo' 
                 width={128} 
                 height={38}

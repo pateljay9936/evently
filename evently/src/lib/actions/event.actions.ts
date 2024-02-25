@@ -6,9 +6,10 @@ import Order from '@/lib/database/models/order.model'
 import Category from '../database/models/category.model'
 import Event from '@/lib/database/models/event.model'
 import { handleError } from '@/lib/utils'
-import { CreateEventParams } from '@/types'
+import { CreateEventParams, NewEventParams } from '@/types'
 import path from 'path'
 import { Model, model } from 'mongoose'
+import { revalidatePath } from 'next/cache'
 
 export async function createEvent ({ event , userId , path }: CreateEventParams) {
   try {
@@ -18,13 +19,30 @@ export async function createEvent ({ event , userId , path }: CreateEventParams)
     if (!organizer) {
         throw new Error('User not found')
     }
-
+    console.log({'event': event})
     
-    const newEvent = await Event.create({ 
-        ...event, 
-        category: event.categoryId,
-        organizer: userId,
-    })
+    const e : NewEventParams ={ 
+      ...event, 
+      category: event.categoryId,
+      organizer: userId,
+  }
+
+//   const  e = new Event({
+//     title: "Sample Event",
+//     description: "This is a sample event for debugging and testing purposes.",
+//     location: "Sample Location",
+//     imageUrl: "https://example.com/sample-image.jpg",
+//     startDateTime: new Date("2022-12-01T00:00:00Z"),
+//     endDateTime: new Date("2022-12-02T00:00:00Z"),
+//     isFree: true,
+//     price: 0,
+//     category: event.categoryId, // replace with a real Category ID
+//     organizer: userId, // replace with a real User ID
+//     url: "https://example.com/sample-event"
+// });
+
+    const newEvent = await Event.create(e)
+    revalidatePath(path)
 
     return JSON.parse(JSON.stringify(newEvent))
   } catch (error) {

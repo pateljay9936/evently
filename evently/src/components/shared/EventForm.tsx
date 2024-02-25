@@ -26,13 +26,16 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { useUploadThing } from "@/lib/uploadthing";
 import { createEvent } from "@/lib/actions/event.actions";
 import { useRouter } from "next/navigation";
+import { IEvent } from "@/lib/database/models/event.model";
 
 type EventformProps = {
   userId: string;
   type: "Create" | "Update";
+  event?: IEvent,
+  eventId?: string
 };
 
-export default function Eventform({ userId, type }: EventformProps) {
+export default function Eventform({ userId, type, event, eventId }: EventformProps) {
   const [Files, setFiles] = useState<File[]>([]);
 
   const initialValues = eventDefaultValues;
@@ -45,28 +48,32 @@ export default function Eventform({ userId, type }: EventformProps) {
   });
 
   async function onSubmit(values: z.infer<typeof eventFormSchema>) {
-    const eventData = values;
     let uploadedImageUrl = values.imageUrl;
 
-    if (Files.length > 0) {
-      const uploadedImages = await startUpload(Files);
-      if (!uploadedImages) {
-        return;
+    if(Files.length > 0) {
+      const uploadedImages = await startUpload(Files)
+
+      if(!uploadedImages) {
+        return
       }
-      uploadedImageUrl = uploadedImages[0].url;
+
+      uploadedImageUrl = uploadedImages[0].url
     }
 
-    if (type === "Create") {
-      try {
-        const newEvent = await createEvent({ 
-          event: { ...eventData, imageUrl: uploadedImageUrl },
-          userId, 
-          path: "/profile" });
 
-          if(newEvent) {
-            form.reset();
-            Router.push(`/events/${newEvent._id}`);
-          }
+    if(type === 'Create') {
+      try {
+        values.imageUrl = uploadedImageUrl;
+        const newEvent = await createEvent({
+          event: values,
+          userId: userId,
+          path: '/profile'
+        })
+
+        if(newEvent) {
+          form.reset();
+          Router.push(`/events/${newEvent._id}`)
+        }
       } catch (error) {
         console.log(error);
       }
@@ -81,15 +88,18 @@ export default function Eventform({ userId, type }: EventformProps) {
           className="flex flex-col gap-5"
         >
           <div className="flex flex-col gap-5 md:flex-row">
-            <FormField
+          <FormField
               control={form.control}
               name="title"
               render={({ field }) => (
                 <FormItem className="w-full">
                   <FormControl>
-                    <Input placeholder="Event title" {...field} />
+                    <div className="flex-center h-[54px] w-full overflow-hidden rounded-full bg-grey-50 px- py-2">
+                      <Input placeholder="Event Title" {...field} className="input-field" />
+                    </div>
+
                   </FormControl>
-                  <FormMessage />
+                  <FormMessage /> 
                 </FormItem>
               )}
             />
@@ -282,32 +292,30 @@ export default function Eventform({ userId, type }: EventformProps) {
                         )}
                       />
                     </div>
-                  </FormControl>
+                    </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
-            />
-            <FormField
+            />   
+           <FormField
               control={form.control}
               name="url"
-              render={({ field }) => (
+            render={({ field }) => (
                 <FormItem className="w-full">
-                  <FormControl className="h-72">
-                    <div className="flex-center h-[54px] w-full overflow-hidden rounded-full bg-grey-50 py-2 px-4">
+                  <FormControl>
+                    <div className="flex-center h-[54px] w-full overflow-hidden rounded-full bg-grey-50 px-4 py-2">
                       <Image
                         src="/assets/icons/link.svg"
                         alt="link"
                         width={24}
                         height={24}
                       />
-                      <Input
-                        className="textarea rounded-2xl"
-                        placeholder="URL"
-                        {...field}
-                      />
+
+                      <Input placeholder="URL" {...field} className="input-field" />
                     </div>
+
                   </FormControl>
-                  <FormMessage />
+                  <FormMessage /> 
                 </FormItem>
               )}
             />

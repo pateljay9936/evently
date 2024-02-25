@@ -98,6 +98,19 @@ export type CreateUserParams = {
     }
   }
   
+  export type NewEventParams = {
+    title: string
+    description: string
+    price: string
+    isFree: boolean
+    imageUrl: string
+    location: string
+    startDateTime: Date
+    endDateTime: Date
+    url: string
+    organizer: string
+    category: string
+  }
   // ====== CATEGORY PARAMS
   export type CreateCategoryParams = {
     categoryName: string
