@@ -32,3 +32,15 @@ export async function getAllCategory() {
       handleError(error)
     }
   }
+
+export async function getCategoryById(categoryId: string) {
+  try {
+    await connectToDatabase()
+
+    const category = await Category.findById(categoryId)
+    return JSON.parse(JSON.stringify(category))
+  }
+  catch (error) {
+    handleError(error)
+  }
+}

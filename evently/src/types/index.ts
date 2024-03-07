@@ -28,7 +28,7 @@ export type CreateUserParams = {
       categoryId: string
       price: string
       isFree: boolean
-      url: string
+      link: string
     }
     path: string
   }
@@ -46,7 +46,7 @@ export type CreateUserParams = {
       categoryId: string
       price: string
       isFree: boolean
-      url: string
+      link: string
     }
     path: string
   }
@@ -86,7 +86,7 @@ export type CreateUserParams = {
     location: string
     startDateTime: Date
     endDateTime: Date
-    url: string
+    link: string
     organizer: {
       _id: string
       firstName: string
@@ -107,7 +107,7 @@ export type CreateUserParams = {
     location: string
     startDateTime: Date
     endDateTime: Date
-    url: string
+    link: string
     organizer: string
     category: string
   }

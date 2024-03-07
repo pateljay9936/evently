@@ -23,5 +23,5 @@ export const headerLinks = [
     categoryId: '',
     price: '',
     isFree: false,
-    url: '',
+    link: '',
   }

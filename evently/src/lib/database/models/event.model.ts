@@ -8,10 +8,11 @@ export interface IEvent extends Document {
     imageUrl: string;
     startDateTime: Date;
     endDateTime: Date;
-    isFree?: boolean;
-    price?: string;
+    isFree: boolean;
+    price: string;
     category?: { _id: string; name: string}
-    organizer?: { _id : string; fristname: string; lastname: string; }
+    organizer?: { _id : string; firstName: string; lastName: string; },
+    link: string;
 }
 
 const EventSchema = new Schema({
@@ -25,7 +26,8 @@ const EventSchema = new Schema({
     isFree: { type: Boolean, default: false },
     price: { type: String },
     category: { type: Schema.Types.ObjectId, ref: 'Category' },
-    organizer: { type: Schema.Types.ObjectId, ref: 'User' }
+    organizer: { type: Schema.Types.ObjectId, ref: 'User' },
+    link: { type: String }
 })
 
 const Event = models.Event || model('Event', EventSchema);

@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { headerLinks } from "../../../constants";
 import { usePathname } from "next/navigation";
+import { SheetClose } from "../ui/sheet";
 
 export default function NavItems(){
     const PathName = usePathname();

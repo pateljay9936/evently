@@ -1,6 +1,9 @@
+"use client";
+
 import {
   Sheet,
   SheetContent,
+  SheetClose,
   SheetDescription,
   SheetHeader,
   SheetTitle,
@@ -9,11 +12,13 @@ import {
 import { Separator } from "@/components/ui/separator"
 import Image from "next/image";
 import NavItems from "./NavItems";
+import { useState } from "react";
 
 export default function MobileNav() {
+
   return (
     <nav className="md:hidden">
-      <Sheet>
+      <Sheet >
         <SheetTrigger className="align-middle">
             <Image
                 className="cursor-pointer" 
@@ -31,7 +36,8 @@ export default function MobileNav() {
                 height={38}
             />
             <Separator className="border border-grey-50"/>
-            <NavItems />
+            
+            <NavItems/>
         </SheetContent>
       </Sheet>
     </nav>
