@@ -112,8 +112,8 @@ export default async function EventDetails({
           emptytitle="No Events Found"
           emptyStateSubtext="comeback later for more events."
           collectionType="All_events"
-          limit={6}
-          page={1}
+          limit={3}
+          page={searchParams.page as string}
           totalPages={relatedEvents?.totalPages}
         />
       </section>

@@ -3,15 +3,23 @@ import { Button } from "../../components/ui/button";
 import Image from "next/image";
 import Collection from "@/components/shared/Collection";
 import { getAllEvents } from "@/lib/actions/event.actions";
+import Search from "@/components/shared/Search";
+import { SearchParamProps } from "@/types";
+import Category from "@/lib/database/models/category.model";
+import CategoryFilter from "@/components/shared/CategoryFilter";
 
-export default async function Home() {
+export default async function Home({searchParams}:SearchParamProps) {
+  const page = Number(searchParams?.page) || 1;
+  const searchText = searchParams?.query as string || "";
+  const category = searchParams?.category as string  || "";
+
   const events = await getAllEvents({
-    query: "",
-    category: "",
+    query: searchText,
+    category: category,
     limit: 6,
-    page: 1,
+    page: page,
   });
-
+ 
   console.log(events);
 
   return (
@@ -49,7 +57,8 @@ export default async function Home() {
         </h2>
 
         <div className="flex flex-col w-full md:flex-row gap-5">
-          search_bar catogory_filter
+          <Search placeholder="Search Title..."/> 
+          <CategoryFilter/>
         </div>
 
         <Collection
@@ -58,7 +67,7 @@ export default async function Home() {
           emptyStateSubtext="comeback later for more events."
           collectionType="All_events"
           limit={6}
-          page={1}
+          page={page}
           totalPages={events?.totalPages}
         />
       </section>
