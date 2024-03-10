@@ -1,6 +1,6 @@
 <div align="center">
   <br />
-  <a href="https://youtu.be/zgGhzuBZOQg" target="_blank">
+  <a href="https://evently-to2p.vercel.app" target="_blank">
       <img src="https://github.com/pateljay9936/evently/blob/main/290822177-548975af-f0ed-4103-8834-fe93cf91862e.png" alt="Project Banner">
   </a>
   <br />
@@ -12,6 +12,9 @@
   </div>
 
   <h3 align="center">A Full Stack Next 14 Events App</h3>
+   <a href="https://evently-to2p.vercel.app">
+      { Deployed Website Link }
+  </a>
 
    
 </div>
