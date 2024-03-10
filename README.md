@@ -1,8 +1,8 @@
 <div align="center">
   <br />
-  <link href="https://evently-to2p.vercel.app/">
+  <a href="https://youtu.be/zgGhzuBZOQg" target="_blank">
       <img src="https://github.com/pateljay9936/evently/blob/main/290822177-548975af-f0ed-4103-8834-fe93cf91862e.png" alt="Project Banner">
-  </link>
+  </a>
   <br />
 
   <div>
