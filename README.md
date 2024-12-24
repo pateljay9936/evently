@@ -1,6 +1,6 @@
 <div align="center">
   <br />
-  <a href="https://evently-to2p.vercel.app" target="_blank">
+  <a href="https://evently-vercel.jomoporo.org" target="_blank">
       <img src="https://github.com/pateljay9936/evently/blob/main/290822177-548975af-f0ed-4103-8834-fe93cf91862e.png" alt="Project Banner">
   </a>
   <br />
